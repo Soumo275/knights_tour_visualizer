@@ -2,16 +2,16 @@
   background-color: #333;
   color: #fff;
   text-align: center;
-  padding: 20px 20px; /* Adjust padding for better spacing */
+  padding: 20px 20px; 
   display: flex;
-  flex-direction: column; /* Stack items vertically */
+  flex-direction: column; 
   justify-content: center;
   align-items: center;
 }
 
 .header h1 {
   margin: 0;
-  font-size: 36px; /* Increased font size for 'Knight's Tour Visualizer' */
+  font-size: 36px; 
 }
 
 .header p {
@@ -21,21 +21,21 @@
 
 .header .links {
   display: flex;
-  gap: 20px; /* Space between the links */
-  margin-top: 10px; /* Space between title and links */
+  gap: 20px;
+  margin-top: 10px; 
 }
 
 .source-link {
   font-size: 18px;
   color: #fff;
   text-decoration: none;
-  background-color: #1e90ff; /* Blue background color */
-  padding: 8px 15px; /* Padding inside the box */
-  border-radius: 5px; /* Rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  background-color: #1e90ff; 
+  padding: 8px 15px; 
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .source-link:hover {
-  background-color: #3a9cf3; /* Lighter blue on hover */
+  background-color: #3a9cf3;
   text-decoration: underline;
 }

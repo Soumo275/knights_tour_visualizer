@@ -7,7 +7,6 @@ const N = 8; // 8x8 chessboard
 const movesX = [2, 1, -1, -2, -2, -1, 1, 2];
 const movesY = [1, 2, 2, 1, -1, -2, -2, -1];
 
-// Utility functions
 const isSafe = (x, y, board) => x >= 0 && y >= 0 && x < N && y < N && board[x][y] === -1;
 
 const countOnwardMoves = (x, y, board) => {
@@ -91,8 +90,8 @@ function App() {
     }, 500);
   };
 
-  // Reset the game
-  const resetGame = () => {
+  // Reset 
+  const reset = () => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
@@ -138,7 +137,7 @@ function App() {
             <button onClick={completeTour} disabled={!startPosition || currentMove === N * N}>
               Complete Tour
             </button>
-            <button onClick={resetGame}>Reset</button>
+            <button onClick={reset}>Reset</button>
           </div>
         </div>
       </main>     
