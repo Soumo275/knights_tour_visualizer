@@ -110,6 +110,7 @@ function App() {
 
       <main>
         <div className="container">
+          <div className="instruction">click on any square to start...</div>
           <div className="board">
             {board.map((row, i) =>
               row.map((cell, j) => (

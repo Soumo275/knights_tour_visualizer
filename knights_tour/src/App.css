@@ -50,6 +50,15 @@ main {
   padding: 20px;
 }
 
+.instruction {
+  font-family: 'Arial', sans-serif; 
+  font-size: 18px; 
+  text-align: center;
+  margin-bottom: 20px;
+  color: #1f4391; 
+  font-weight: bold;
+}
+
 h1 {
   margin-bottom: 20px;
 }
