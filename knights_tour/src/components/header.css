@@ -2,9 +2,9 @@
   background-color: #333;
   color: #fff;
   text-align: center;
-  padding: 10px 20px; /* Padding for the header */
-  position: relative; /* Positioning for the links */
+  padding: 20px 20px; /* Adjust padding for better spacing */
   display: flex;
+  flex-direction: column; /* Stack items vertically */
   justify-content: center;
   align-items: center;
 }
@@ -20,10 +20,9 @@
 }
 
 .header .links {
-  position: absolute;
-  right: 20px; /* Align the links to the right */
   display: flex;
   gap: 20px; /* Space between the links */
+  margin-top: 10px; /* Space between title and links */
 }
 
 .source-link {

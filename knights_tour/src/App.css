@@ -94,6 +94,7 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-left: 20px; /* Space between board and buttons */
 }
 
 button {
@@ -105,4 +106,62 @@ button {
 .start-cell {
   background-color: #800080 !important; /* Purple */
   color: #fff;
+}
+
+/* Responsive Design - Mobile Screens */
+@media (max-width: 768px) {
+  /* Adjust layout for smaller screens */
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Ensure the board cells adjust for smaller screens */
+  .board {
+    grid-template-columns: repeat(8, 40px); /* Smaller cells */
+    grid-gap: 1px;
+  }
+
+  .cell {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .controls {
+    flex-direction: row; /* Stack buttons beside each other */
+    gap: 10px; /* Space between buttons */
+    align-items: center; /* Align buttons in a row */
+    margin-top: 10px; /* Space between the board and buttons */
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px 16px; /* Adjust button padding */
+  }
+}
+
+/* For very small mobile screens (portrait) */
+@media (max-width: 480px) {
+  .board {
+    grid-template-columns: repeat(8, 30px); /* Even smaller cells */
+    grid-gap: 1px;
+  }
+
+  .cell {
+    width: 30px;
+    height: 30px;
+    font-size: 14px; /* Smaller font for very small screens */
+  }
+
+  .controls {
+    flex-direction: row; /* Keep buttons in a row layout */
+    gap: 8px; /* Adjust gap between buttons */
+    align-items: center;
+  }
+
+  button {
+    font-size: 12px;
+    padding: 6px 12px; /* Smaller padding */
+  }
 }
