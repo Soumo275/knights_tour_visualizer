@@ -5,14 +5,24 @@ function Header() {
   return (
     <header className="header">
       <h1>Knight's Tour Visualizer</h1>
-      <a
-        href="https://github.com/Soumo275/knights_tour_visualizer" // Replace with your actual GitHub repo link
-        className="source-link"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Source Code
-      </a>
+      <div className="links">
+        <a
+          href="https://github.com/Soumo275/knights_tour_visualizer" 
+          className="source-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Source Code
+        </a>
+        <a
+          href="https://www.geeksforgeeks.org/warnsdorffs-algorithm-knights-tour-problem/"
+          className="source-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn Concept
+        </a>
+      </div>
     </header>
   );
 }

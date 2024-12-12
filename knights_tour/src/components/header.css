@@ -3,7 +3,10 @@
   color: #fff;
   text-align: center;
   padding: 10px 20px; /* Padding for the header */
-  position: relative; /* Positioning for the source code link */
+  position: relative; /* Positioning for the links */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .header h1 {
@@ -16,16 +19,24 @@
   font-size: 14px;
 }
 
+.header .links {
+  position: absolute;
+  right: 20px; /* Align the links to the right */
+  display: flex;
+  gap: 20px; /* Space between the links */
+}
+
 .source-link {
-  font-size: 14px;
+  font-size: 18px;
   color: #fff;
   text-decoration: none;
-  position: absolute;
-  right: 20px; /* Position the link to the right */
-  top: 50%;
-  transform: translateY(-50%);
   background-color: #1e90ff; /* Blue background color */
   padding: 8px 15px; /* Padding inside the box */
   border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
 }
 
+.source-link:hover {
+  background-color: #3a9cf3; /* Lighter blue on hover */
+  text-decoration: underline;
+}
