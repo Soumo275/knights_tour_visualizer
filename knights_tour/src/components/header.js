@@ -5,7 +5,14 @@ function Header() {
   return (
     <header className="header">
       <h1>Knight's Tour Visualizer</h1>
-      <p>Made by Soumo </p>
+      <a
+        href="https://github.com/Soumo275/knights_tour_visualizer" // Replace with your actual GitHub repo link
+        className="source-link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Source Code
+      </a>
     </header>
   );
 }
