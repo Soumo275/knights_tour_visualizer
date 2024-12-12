@@ -138,7 +138,7 @@ function App() {
             <button onClick={completeTour} disabled={!startPosition || currentMove === N * N}>
               Complete Tour
             </button>
-            <button onClick={resetGame}>Reset Game</button>
+            <button onClick={resetGame}>Reset</button>
           </div>
         </div>
       </main>     
