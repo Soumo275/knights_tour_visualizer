@@ -31,7 +31,6 @@ h1 {
   cursor: pointer;
 }
 
-/* Chessboard pattern based on row and column indices */
 .cell.light {
   background-color: #f0d9b5; /* Light color */
 }

@@ -40,7 +40,9 @@ function App() {
 
   // Handle cell click to set the starting position
   const handleCellClick = (x, y) => {
-    if (gameStarted || currentMove > 0) return; // Prevent changes after the game has started or first move is made
+    // Prevent changes after the game has started
+    if (gameStarted || currentMove > 1) return;
+
     const newBoard = Array.from({ length: N }, () => Array(N).fill(-1));
     newBoard[x][y] = 0;
     setBoard(newBoard);
@@ -50,16 +52,17 @@ function App() {
 
   // Handle the next move
   const nextMove = () => {
-    if (!startPosition) return;
-    const { x, y } = startPosition;
-    const moves = getSortedMoves(x, y, board);
-    if (moves.length === 0) return;
-    const { x: nx, y: ny } = moves[0];
-    const newBoard = board.map(row => [...row]);
-    newBoard[nx][ny] = currentMove;
-    setBoard(newBoard);
-    setStartPosition({ x: nx, y: ny });
-    setCurrentMove(currentMove + 1);
+    if (!startPosition) return; // If no starting position, do nothing
+    const { x, y } = startPosition; // Use the current position
+    const moves = getSortedMoves(x, y, board); // Get possible moves from the current position
+    if (moves.length === 0) return; // No onward moves available
+    const { x: nx, y: ny } = moves[0]; // Get the next move
+    const newBoard = board.map(row => [...row]); // Create a copy of the board
+    newBoard[nx][ny] = currentMove; // Mark the new position on the board
+    setBoard(newBoard); // Update the board state
+    setStartPosition({ x: nx, y: ny }); // Update the current position
+    setCurrentMove(currentMove + 1); // Increment the move count
+    setGameStarted(true); // Mark the game as started after the first move
   };
 
   // Complete the tour
@@ -116,10 +119,10 @@ function App() {
           )}
         </div>
         <div className="controls">
-          <button onClick={nextMove} disabled={!startPosition || gameStarted}>
+          <button onClick={nextMove} disabled={(!startPosition || currentMove === N * N ) }>
             Next Move
           </button>
-          <button onClick={completeTour} disabled={!startPosition || gameStarted}>
+          <button onClick={completeTour} disabled={!startPosition || currentMove === N * N}>
             Complete Tour
           </button>
           <button onClick={resetGame}>Reset Game</button> {/* Reset button */}
