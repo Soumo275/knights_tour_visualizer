@@ -20,7 +20,7 @@ function Header() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn Concept
+          Concept
         </a>
       </div>
     </header>
