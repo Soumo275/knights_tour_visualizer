@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./App.css";
 
-const N = 8;
+const N = 8; // 8x8 chessboard
 const movesX = [2, 1, -1, -2, -2, -1, 1, 2];
 const movesY = [1, 2, 2, 1, -1, -2, -2, -1];
 
+// Utility functions
 const isSafe = (x, y, board) => x >= 0 && y >= 0 && x < N && y < N && board[x][y] === -1;
 
 const countOnwardMoves = (x, y, board) => {
@@ -34,8 +35,12 @@ function App() {
   const [board, setBoard] = useState(Array.from({ length: N }, () => Array(N).fill(-1)));
   const [startPosition, setStartPosition] = useState(null);
   const [currentMove, setCurrentMove] = useState(0);
+  const [gameStarted, setGameStarted] = useState(false); // Track whether the game has started
+  const intervalRef = useRef(null); // To hold the interval for the "Complete Tour"
 
+  // Handle cell click to set the starting position
   const handleCellClick = (x, y) => {
+    if (gameStarted || currentMove > 0) return; // Prevent changes after the game has started or first move is made
     const newBoard = Array.from({ length: N }, () => Array(N).fill(-1));
     newBoard[x][y] = 0;
     setBoard(newBoard);
@@ -43,6 +48,7 @@ function App() {
     setCurrentMove(1);
   };
 
+  // Handle the next move
   const nextMove = () => {
     if (!startPosition) return;
     const { x, y } = startPosition;
@@ -56,16 +62,18 @@ function App() {
     setCurrentMove(currentMove + 1);
   };
 
+  // Complete the tour
   const completeTour = () => {
     if (!startPosition) return;
     let tempBoard = board.map(row => [...row]);
     let tempPosition = { ...startPosition };
     let move = currentMove;
 
-    const interval = setInterval(() => {
+    intervalRef.current = setInterval(() => {
       const moves = getSortedMoves(tempPosition.x, tempPosition.y, tempBoard);
       if (moves.length === 0 || move === N * N) {
-        clearInterval(interval);
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
         return;
       }
       const { x: nx, y: ny } = moves[0];
@@ -78,10 +86,16 @@ function App() {
     }, 500);
   };
 
-  const resetBoard = () => {
+  // Reset the game
+  const resetGame = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
     setBoard(Array.from({ length: N }, () => Array(N).fill(-1)));
     setStartPosition(null);
     setCurrentMove(0);
+    setGameStarted(false); // Reset the gameStarted flag
   };
 
   return (
@@ -93,7 +107,7 @@ function App() {
             row.map((cell, j) => (
               <div
                 key={`${i}-${j}`}
-                className={`cell ${cell !== -1 ? "visited" : ""}`}
+                className={`cell ${cell !== -1 ? "visited" : ""} ${ (i + j) % 2 === 0 ? 'light' : 'dark'}`}
                 onClick={() => handleCellClick(i, j)}
               >
                 {cell !== -1 ? cell : ""}
@@ -102,13 +116,13 @@ function App() {
           )}
         </div>
         <div className="controls">
-          <button onClick={nextMove} disabled={!startPosition}>
+          <button onClick={nextMove} disabled={!startPosition || gameStarted}>
             Next Move
           </button>
-          <button onClick={completeTour} disabled={!startPosition}>
+          <button onClick={completeTour} disabled={!startPosition || gameStarted}>
             Complete Tour
           </button>
-          <button onClick={resetBoard}>Reset</button>
+          <button onClick={resetGame}>Reset Game</button> {/* Reset button */}
         </div>
       </div>
     </div>
