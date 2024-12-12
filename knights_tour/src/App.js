@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./App.css";
+import Header from "./components/header";
+import Footer from "./components/footer";
 
 const N = 8; // 8x8 chessboard
 const movesX = [2, 1, -1, -2, -2, -1, 1, 2];
@@ -104,38 +106,45 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Knight's Tour Visualizer</h1>
-      <div className="container">
-        <div className="board">
-          {board.map((row, i) =>
-            row.map((cell, j) => (
-              <div
-                key={`${i}-${j}`}
-                className={`cell 
-                  ${cell !== -1 ? "visited" : ""} 
-                  ${initialStartPosition &&
-                  initialStartPosition.x === i &&
-                  initialStartPosition.y === j
-                    ? "start-cell"
-                    : ""} 
-                  ${(i + j) % 2 === 0 ? "light" : "dark"}`}
-                onClick={() => handleCellClick(i, j)}
-              >
-                {cell !== -1 ? cell : ""}
-              </div>
-            ))
-          )}
+
+      <Header /> 
+
+      <main>
+        <div className="container">
+          <div className="board">
+            {board.map((row, i) =>
+              row.map((cell, j) => (
+                <div
+                  key={`${i}-${j}`}
+                  className={`cell 
+                    ${cell !== -1 ? "visited" : ""} 
+                    ${initialStartPosition &&
+                    initialStartPosition.x === i &&
+                    initialStartPosition.y === j
+                      ? "start-cell"
+                      : ""} 
+                    ${(i + j) % 2 === 0 ? "light" : "dark"}`}
+                  onClick={() => handleCellClick(i, j)}
+                >
+                  {cell !== -1 ? cell : ""}
+                </div>
+              ))
+            )}
+          </div>
+          <div className="controls">
+            <button onClick={nextMove} disabled={!startPosition || currentMove === N * N}>
+              Next Move
+            </button>
+            <button onClick={completeTour} disabled={!startPosition || currentMove === N * N}>
+              Complete Tour
+            </button>
+            <button onClick={resetGame}>Reset Game</button>
+          </div>
         </div>
-        <div className="controls">
-          <button onClick={nextMove} disabled={!startPosition || currentMove === N * N}>
-            Next Move
-          </button>
-          <button onClick={completeTour} disabled={!startPosition || currentMove === N * N}>
-            Complete Tour
-          </button>
-          <button onClick={resetGame}>Reset Game</button>
-        </div>
-      </div>
+      </main>     
+
+      <Footer />
+
     </div>
   );
 }
