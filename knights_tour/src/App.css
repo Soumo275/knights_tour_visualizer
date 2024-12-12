@@ -54,3 +54,8 @@ button {
   font-size: 16px;
   cursor: pointer;
 }
+
+.start-cell {
+  background-color: #800080 !important; /* Purple */
+  color: #fff;
+}
